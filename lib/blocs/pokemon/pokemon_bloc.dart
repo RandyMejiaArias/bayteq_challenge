@@ -24,5 +24,113 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
         emit(PokemonError());
       }
     });
+
+    on<PokemonAddAbility>((event, emit) {
+      PokemonLoaded pokemonLoaded = state as PokemonLoaded;
+      Pokemon pokemon = pokemonLoaded.pokemon;
+      switch (event.ability) {
+        case 'Intimidación':
+          pokemon.stats[0].baseStat-=5;
+          pokemon.stats[2].baseStat-=10;
+          pokemon.stats[1].baseStat+=10;
+          pokemon.stats[5].baseStat+=15;
+          emit(PokemonLoaded(pokemon: pokemon));
+          break;
+        
+        case 'Regeneración':
+          pokemon.stats[0].baseStat+=10;
+          pokemon.stats[1].baseStat-=20;
+          pokemon.stats[2].baseStat+=5;
+          pokemon.stats[5].baseStat+=5;
+          emit(PokemonLoaded(pokemon: pokemon));
+          break;
+        
+        case 'Inmunidad':
+          pokemon.stats[0].baseStat+=10;
+          pokemon.stats[1].baseStat-=20;
+          pokemon.stats[2].baseStat+=20;
+          pokemon.stats[5].baseStat-=10;
+          emit(PokemonLoaded(pokemon: pokemon));
+          break;
+        
+        case 'Potencia':
+          pokemon.stats[0].baseStat-=20;
+          pokemon.stats[1].baseStat-=10;
+          pokemon.stats[2].baseStat-=10;
+          pokemon.stats[5].baseStat+=15;
+          emit(PokemonLoaded(pokemon: pokemon));
+          break;
+        
+        case 'Impasible':
+          pokemon.stats[0].baseStat-=10;
+          pokemon.stats[1].baseStat-=3;
+          pokemon.stats[2].baseStat-=10;
+          pokemon.stats[5].baseStat+=30;
+          emit(PokemonLoaded(pokemon: pokemon));
+          break;
+        
+        case 'Tóxico':
+          pokemon.stats[0].baseStat-=15;
+          pokemon.stats[2].baseStat+=20;
+          pokemon.stats[5].baseStat+=3;
+          emit(PokemonLoaded(pokemon: pokemon));
+          break;
+        default:
+      }
+    });
+
+    on<PokemonRemoveAbility>((event, emit) {
+      PokemonLoaded pokemonLoaded = state as PokemonLoaded;
+      Pokemon pokemon = pokemonLoaded.pokemon;
+      switch (event.ability) {
+        case 'Intimidación':
+          pokemon.stats[0].baseStat+=5;
+          pokemon.stats[2].baseStat+=10;
+          pokemon.stats[1].baseStat-=10;
+          pokemon.stats[5].baseStat-=15;
+          emit(PokemonLoaded(pokemon: pokemon));
+          break;
+        
+        case 'Regeneración':
+          pokemon.stats[0].baseStat-=10;
+          pokemon.stats[1].baseStat+=20;
+          pokemon.stats[2].baseStat-=5;
+          pokemon.stats[5].baseStat-=5;
+          emit(PokemonLoaded(pokemon: pokemon));
+          break;
+        
+        case 'Inmunidad':
+          pokemon.stats[0].baseStat-=10;
+          pokemon.stats[1].baseStat+=20;
+          pokemon.stats[2].baseStat-=20;
+          pokemon.stats[5].baseStat+=10;
+          emit(PokemonLoaded(pokemon: pokemon));
+          break;
+        
+        case 'Potencia':
+          pokemon.stats[0].baseStat+=20;
+          pokemon.stats[1].baseStat+=10;
+          pokemon.stats[2].baseStat+=10;
+          pokemon.stats[5].baseStat-=15;
+          emit(PokemonLoaded(pokemon: pokemon));
+          break;
+        
+        case 'Impasible':
+          pokemon.stats[0].baseStat+=10;
+          pokemon.stats[1].baseStat+=3;
+          pokemon.stats[2].baseStat+=10;
+          pokemon.stats[5].baseStat-=30;
+          emit(PokemonLoaded(pokemon: pokemon));
+          break;
+        
+        case 'Tóxico':
+          pokemon.stats[0].baseStat+=15;
+          pokemon.stats[2].baseStat-=20;
+          pokemon.stats[5].baseStat-=3;
+          emit(PokemonLoaded(pokemon: pokemon));
+          break;
+        default:
+      }
+    });
   }
 }

@@ -12,3 +12,15 @@ class PokemonFetched extends PokemonEvent {
 
   PokemonFetched(this.url);
 }
+
+class PokemonAddAbility extends PokemonEvent {
+  final String ability;
+
+  PokemonAddAbility(this.ability);
+}
+
+class PokemonRemoveAbility extends PokemonEvent {
+  final String ability;
+
+  PokemonRemoveAbility(this.ability);
+}

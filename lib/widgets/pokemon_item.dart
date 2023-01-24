@@ -1,5 +1,4 @@
 import 'package:bayteq_challenge/blocs/pokemon/pokemon_bloc.dart';
-import 'package:bayteq_challenge/widgets/grid_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -72,19 +71,22 @@ class _PokemonItemState extends State<PokemonItem> {
                             if(selectedList.length > 1) {
                               if(selectedList.contains(itemList[index])){
                                 selectedList.remove(itemList[index]);
+                                _pokemonBloc..add(PokemonRemoveAbility(itemList[index]));
                               }
                             }
                             else {
                               if (selectedList.contains(itemList[index])){
                                 selectedList.remove(itemList[index]);
+                                _pokemonBloc..add(PokemonRemoveAbility(itemList[index]));
                               } else {
                                 selectedList.add(itemList[index]);
+                                _pokemonBloc..add(PokemonAddAbility(itemList[index]));
                               }
                             }
                           });
                         },
                         child: Container(
-                          margin: EdgeInsets.all(10),
+                          margin: EdgeInsets.all(4),
                           decoration: BoxDecoration(
                             color: selectedList.contains(itemList[index])
                               ? Colors.red[400]
@@ -112,7 +114,6 @@ class _PokemonItemState extends State<PokemonItem> {
                     }
                   ),
                 ),
-                const SizedBox(height: 16),
                 const Center(child: Text('Información de las habilidades seleccionadas')),
                 const SizedBox(height: 16),
                 const Center(child: Text('Datos de la habilidad seleccionada')),
