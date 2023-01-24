@@ -69,10 +69,17 @@ class _PokemonItemState extends State<PokemonItem> {
                       return GestureDetector(
                         onTap: () {
                           setState(() {
-                            if (selectedList.contains(itemList[index])){
-                              selectedList.remove(itemList[index]);
-                            } else {
-                              selectedList.add(itemList[index]);
+                            if(selectedList.length > 1) {
+                              if(selectedList.contains(itemList[index])){
+                                selectedList.remove(itemList[index]);
+                              }
+                            }
+                            else {
+                              if (selectedList.contains(itemList[index])){
+                                selectedList.remove(itemList[index]);
+                              } else {
+                                selectedList.add(itemList[index]);
+                              }
                             }
                           });
                         },
